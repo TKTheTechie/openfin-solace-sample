@@ -7,8 +7,22 @@ html
     script(type='text/javascript' src="/js/solace-pubsub.js")
   body
     block content
+    span Java Message:
+    #JavaContainer
+    br
+    hr
+    br
+    span Python Message:
+    #PythonContainer
     script.
       var solace=require('solclientjs');
+      var subscriptionFunction = function (message) {
+            if(message.getDestination().getName()==='OPENFIN/SOLACE/PYTHON'){
+                document.getElementById('PythonContainer').innerHTML=message.getBinaryAttachment();
+             }else if(message.getDestination().getName()==='OPENFIN/SOLACE/JAVA'){
+                document.getElementById('JavaContainer').innerHTML=message.getSdtContainer().getValue();
+             }
+        }
       window.onload = function () {
         // Initialize factory with the most recent API defaults
         var factoryProps = new solace.SolclientFactoryProperties();
@@ -18,7 +32,7 @@ html
         // NOTICE: works only with "solclientjs-debug.js"
         solace.SolclientFactory.setLogLevel(solace.LogLevel.WARN);
         // create the publisher, specifying name of the subscription topic
-        var openFinSolacePubSub = new OpenFinSolacePubSub('OPENFIN/SOLACE/WRITE',['OPENFIN/SOLACE/STOCK1','OPENFIN/SOLACE/STOCK2'],function(){});
+        var openFinSolacePubSub = new OpenFinSolacePubSub('OPENFIN/SOLACE/WRITE',['OPENFIN/SOLACE/PYTHON','OPENFIN/SOLACE/JAVA'],subscriptionFunction);
         openFinSolacePubSub.connect();
       }
       

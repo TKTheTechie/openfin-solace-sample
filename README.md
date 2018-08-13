@@ -38,5 +38,5 @@ Navigate to the java-publisher folder and run the following commands (assuming y
 
 ```
     mvn install:install
-    mvn run:exec
+    mvn exec:java
 ```
