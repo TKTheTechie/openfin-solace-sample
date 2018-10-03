@@ -27,7 +27,7 @@ To setup your local Solace broker with secure websockets so you can use it with 
 >ssl-server-certificate OpenFin.pem
 ```
 
-### ... or sign up for a free Solace Cloud account
+## ... or sign up for a free Solace Cloud account
 Sign up for a free [Solace Cloud](http://cloud.solace.com) account with all the endpoints enabled. You will have to change the connectivity details in the sample app to match the endpoints in your Solace Cloud instance.
 
 ## Setting up the app
