@@ -34,7 +34,7 @@ Sign up for a free [Solace Cloud](http://cloud.solace.com) account with all the 
 
 The app consists of three parts -
 
-### Running the javascript Subscriber
+### Running the javascript subscriber
 To start this, navigate to the web-app direcory and run 
 ```
     npm install
