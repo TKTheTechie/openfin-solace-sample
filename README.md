@@ -12,6 +12,21 @@ Run the following commands (replace x.x.x.x with the Solace PubSub+ Broker versi
  accesslevel=admin --env username_admin_password=admin  --name=solace solace-pubsub-standard:x.x.x.x
 ```
 
+To setup your local Solace broker with secure websockets so you can use it with OpenFin, use the following steps:
+
+1. Get the Container ID of the started Solace Pubsub+ Broker by running ```docker ps``` and getting the appropriate container id
+2. Generate a PEM certificate file using OpenSSL (for example using [this link](https://rietta.com/blog/2012/01/27/openssl-generating-rsa-key-from-command/) or use your own certifcate file
+3. Use the following command to copy your public key cert to the Solace PubSub+ Container (this assumes your certificate file is called OpenFin.pem and the Container ID is 2e16eaf93225 
+```docker cp OpenFin.pem 2e16eaf93225:/usr/sw/jail/certs```
+4. Login to the Solace PubSub+ CLI using the following commands
+  
+```
+>docker exec -it 2e16eaf93225  cli
+>enable
+>configure
+>ssl-server-certificate OpenFin.pem
+```
+
 ## Setting up the app
 
 The app consists of three parts -
