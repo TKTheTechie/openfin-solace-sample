@@ -2,14 +2,12 @@
 A sample web app that demonstrates multi-protocol\multi-language support over Solace.
 
 ## Setting up a PubSub+ Software broker locally
-Download the Solace PubSub+ Standard Docker Container - https://products.solace.com/download/PUBSUB_DOCKER_STAND
-
-Run the following commands (replace x.x.x.x with the Solace PubSub+ Broker version)
+Run the following commands:
 
 ```
- >docker load -i .\solace-pubsub-standard-x.x.x.x-docker.tar.gz
- >docker run -d -p 80:80 -p 8080:8080 -p 55555:55555 --shm-size=2g --env username_admin_global
- accesslevel=admin --env username_admin_password=admin  --name=solace solace-pubsub-standard:x.x.x.x
+ >docker pull solace/solace-pubsub-standard
+ >docker run -d -p 80:80 -p 8080:8080 -p 55555:55555 -p 443:443 -p 1883:1883 -p 5672:5672 -p 9000:9000 --shm-size=2g --env username_admin_global
+ accesslevel=admin --env username_admin_password=admin  --name=solace solace/solace-pubsub-standard
 ```
 
 To setup your local Solace broker with secure websockets so you can use it with OpenFin, use the following steps:
